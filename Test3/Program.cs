@@ -7,8 +7,6 @@ namespace Rockpaperscissors
         static void Main(string[] args)
         {
             bool gameloop = true;
-
-
             int PlayerOnePoints = 0;
             int PlayerTwoPoints = 0;
 
@@ -25,19 +23,18 @@ namespace Rockpaperscissors
 
                 if (results == Player_Two_Won)
                 {
-
+                    Console.WriteLine("Player Two Won!!");
                     PlayerTwoPoints++;
                 }
                 else if (results == Player_One_Won)
                 {
+                    Console.WriteLine("Player One Won!!");
                     PlayerOnePoints++;
                 }
                 else
                 {
-                    
-                }
-                   
-
+                    Console.WriteLine("It is a draw");
+                }                 
 
                 if (PlayerOnePoints == 5 || PlayerTwoPoints == 5)
                 {
@@ -45,9 +42,7 @@ namespace Rockpaperscissors
                     Console.WriteLine($"Player Two has {PlayerTwoPoints} points - Player One has {PlayerOnePoints} points");
                 }
 
-            }
-           
-
+            }          
 
         }
 
@@ -92,89 +87,60 @@ namespace Rockpaperscissors
         private static string Tie = "It's a draw.";
 
         public static string Game(string PlayerOne, string PlayerTwo)
-        {
-            
-           
-
+        {           
+                      
             switch (PlayerOne)
             {               
 
                 case "A":
                     if (PlayerTwo == "A")
-                    {
-                        Console.WriteLine("It is a draw");
+                    {                        
                         return Tie;
                     }
                     else if (PlayerTwo == "B")
                     {
-                        Console.WriteLine("Player Two Won!!");
-                        return Player_Two_Won;
-                        
+                        return Player_Two_Won;                        
                     }
                     else if (PlayerTwo == "C")
                     {
-                        Console.WriteLine("Player One Won!!");
                         return Player_One_Won;
                     }
                     break;
 
                 case "B":
                     if (PlayerTwo == "A")
-                    {
-                        Console.WriteLine("Player One Won!!");
+                    { 
                         return Player_One_Won;
                     }
-
                     else if (PlayerTwo == "B")
                     {
-                        Console.WriteLine("It is a draw");
                         return Tie;
                     }
                     else if (PlayerTwo == "C")
                     {
-                        Console.WriteLine("Player Two Won!!");
                         return Player_Two_Won;
                     }
                     break;
 
                 case "C":
                     if (PlayerTwo == "A")
-                    {
-
-                        Console.WriteLine("Player Two Won!!");
+                    { 
                         return Player_Two_Won;
                     }
-
                     else if (PlayerTwo == "B")
-                    {
-                        Console.WriteLine("Player One Won!!");
+                    {         
                         return Player_One_Won;
-
                     }
                     else if (PlayerTwo == "C")
-                    {
-                        Console.WriteLine("It is a tie");
+                    {                       
                         return Tie;
                     }
-                    break;
-
-                
-
+                    break;              
 
             }
-
             return Tie;
             
-        }
-
-       
-
-      
-
-                 
-           
-        
-
+        }   
 
     }
 }   
