@@ -19,21 +19,19 @@ namespace Rockpaperscissors
 
                var results = Game(PlayerOne, PlayerTwo);
 
-
+                Console.WriteLine(results);
 
                 if (results == Player_Two_Won)
-                {
-                    Console.WriteLine(Player_Two_Won);
+                {                    
                     PlayerTwoPoints++;
                 }
                 else if (results == Player_One_Won)
-                {
-                    Console.WriteLine(Player_One_Won);
+                {                    
                     PlayerOnePoints++;
                 }
                 else
                 {
-                    Console.WriteLine(Tie);
+                    
                 }                 
 
                 if (PlayerOnePoints == 5 || PlayerTwoPoints == 5)
