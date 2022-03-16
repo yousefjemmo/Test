@@ -23,17 +23,17 @@ namespace Rockpaperscissors
 
                 if (results == Player_Two_Won)
                 {
-                    Console.WriteLine("Player Two Won!!");
+                    Console.WriteLine(Player_Two_Won);
                     PlayerTwoPoints++;
                 }
                 else if (results == Player_One_Won)
                 {
-                    Console.WriteLine("Player One Won!!");
+                    Console.WriteLine(Player_One_Won);
                     PlayerOnePoints++;
                 }
                 else
                 {
-                    Console.WriteLine("It is a draw");
+                    Console.WriteLine(Tie);
                 }                 
 
                 if (PlayerOnePoints == 5 || PlayerTwoPoints == 5)
@@ -60,7 +60,7 @@ namespace Rockpaperscissors
             while (!IputCheckIsValidForPlayerOne)
             {
                  
-
+                   
                 input = Console.ReadLine().ToUpper();
 
                 if (input == "A" || input == "B" || input == "C")
@@ -73,7 +73,7 @@ namespace Rockpaperscissors
                 }
                 else
                 {
-                    Console.Write("Either A , B or C. Try Again: ");                    
+                    Console.WriteLine("Either A , B or C. Try Again: ");                    
                 }
                 
             }
