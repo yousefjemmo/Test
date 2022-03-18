@@ -12,12 +12,11 @@ namespace Rockpaperscissors
 
             while (gameloop)
             {
-                var PlayerOne = AskForInput();
+                var PlayerOne = AskForInputAndCheckIt();
+                var PlayerTwo = AskForInputAndCheckIt();
 
-                var PlayerTwo = AskForInput();
 
-
-               var results = Game(PlayerOne, PlayerTwo);
+                var results = CompareTheAnswersBetweenPlayers(PlayerOne, PlayerTwo);
 
                 Console.WriteLine(results);
 
@@ -29,11 +28,7 @@ namespace Rockpaperscissors
                 {                    
                     PlayerOnePoints++;
                 }
-                else
-                {
-                    
-                }                 
-
+               
                 if (PlayerOnePoints == 5 || PlayerTwoPoints == 5)
                 {
                     gameloop = false;
@@ -44,7 +39,7 @@ namespace Rockpaperscissors
 
         }
 
-        private static string AskForInput()
+        private static string AskForInputAndCheckIt()
         {
             Console.WriteLine("\nPlease enter a Letter below for your choice and press enter:");
 
@@ -56,26 +51,19 @@ namespace Rockpaperscissors
             bool IputCheckIsValidForPlayerOne = false;
             string input = "";
             while (!IputCheckIsValidForPlayerOne)
-            {
-                 
-                   
+            {                   
                 input = Console.ReadLine().ToUpper();
 
                 if (input == "A" || input == "B" || input == "C")
-                {
-                    
-                    Console.WriteLine($"Player: {input} \n");
-                    
+                {                    
+                    Console.WriteLine($"Player: {input} \n");                    
                     IputCheckIsValidForPlayerOne = true;
-
                 }
                 else
                 {
                     Console.WriteLine("Either A , B or C. Try Again: ");                    
-                }
-                
-            }
-            
+                }                
+            }            
             return input;
 
         }
@@ -84,56 +72,59 @@ namespace Rockpaperscissors
         private static string Player_Two_Won = "Player Two Won!!";
         private static string Tie = "It's a draw.";
 
-        public static string Game(string PlayerOne, string PlayerTwo)
+        public static string CompareTheAnswersBetweenPlayers(string PlayerOne, string PlayerTwo)
         {           
                       
             switch (PlayerOne)
             {               
 
                 case "A":
-                    if (PlayerTwo == "A")
-                    {                        
-                        return Tie;
-                    }
-                    else if (PlayerTwo == "B")
+                    switch (PlayerTwo)
                     {
-                        return Player_Two_Won;                        
-                    }
-                    else if (PlayerTwo == "C")
-                    {
-                        return Player_One_Won;
-                    }
+                        case "A":
+                            return Tie;
+
+                        case "B":
+                            return Player_Two_Won;
+
+                        case "C":
+                            return Player_One_Won;
+
+                            break;
+                    }                 
                     break;
 
                 case "B":
-                    if (PlayerTwo == "A")
-                    { 
-                        return Player_One_Won;
-                    }
-                    else if (PlayerTwo == "B")
+                    switch (PlayerTwo)
                     {
-                        return Tie;
-                    }
-                    else if (PlayerTwo == "C")
-                    {
-                        return Player_Two_Won;
+                        case "A":
+                            return Player_One_Won;
+
+                        case "B":
+                            return Tie;
+
+                        case "C":
+                            return Player_Two_Won;
+
+                            break;
                     }
                     break;
 
                 case "C":
-                    if (PlayerTwo == "A")
-                    { 
-                        return Player_Two_Won;
+                    switch (PlayerTwo)
+                    {
+                        case "A":
+                            return Player_Two_Won;
+
+                        case "B":
+                            return Player_One_Won;
+
+                        case "C":
+                            return Tie;
+
+                            break;
                     }
-                    else if (PlayerTwo == "B")
-                    {         
-                        return Player_One_Won;
-                    }
-                    else if (PlayerTwo == "C")
-                    {                       
-                        return Tie;
-                    }
-                    break;              
+                    break;
 
             }
             return Tie;
