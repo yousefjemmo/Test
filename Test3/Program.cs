@@ -8,7 +8,8 @@ namespace Rockpaperscissors
         {
             bool gameloop = true;
             int PlayerOnePoints = 0;
-            int PlayerTwoPoints = 0;           
+            int PlayerTwoPoints = 0;
+            
             
 
             bool MaxPointsIsValid = false;
@@ -41,10 +42,7 @@ namespace Rockpaperscissors
                 if (UserChoice == "A")
                 {
                     var PlayerOne = AskForInputAndCheckIt();
-                    var PlayerTwo = AskForInputAndCheckIt();
-                    
-
-
+                    var PlayerTwo = AskForInputAndCheckIt();                  
                     var results = CompareTheAnswersBetweenPlayers(PlayerOne, PlayerTwo);
 
                     Console.WriteLine(results);
@@ -68,25 +66,44 @@ namespace Rockpaperscissors
 
                     var results = CompareTheAnswersBetweenPlayers(PlayerOne, Computer);
 
-                    Console.WriteLine(results);
+                    if (Player_Two_Won == results)
+                    {
+                        Console.WriteLine(Computer_Won);
+                    }
+                    else
+                    {
+                        Console.WriteLine(results);
+                    }                   
+                    
 
                     if (results == Player_Two_Won)
-                    {
-
-                        Console.WriteLine($"Player Two Choice: {Computer} \n ");
+                    {                        
+                        Console.WriteLine($"Computer Choice: {Computer} \n ");
                         PlayerTwoPoints++;
                     }
                     else if (results == Player_One_Won)
-                    {
-                        Console.WriteLine($"Player Two Choice: {Computer} \n");
+                    {                       
                         PlayerOnePoints++;
                     }
                 }
 
-                if (PlayerOnePoints == maxpoints / 2 || PlayerTwoPoints == maxpoints / 2)
+                if (maxpoints % 2 != 0)
                 {
-                    Console.WriteLine($"Player One has now {PlayerOnePoints}");                    
-                    Console.WriteLine($"Player Two has now {PlayerTwoPoints}");                 
+                    if (PlayerOnePoints == maxpoints / 2 + 1 || PlayerTwoPoints == maxpoints / 2 + 1)
+                    {
+                        Console.WriteLine($"Player One has now {PlayerOnePoints} points!! ");
+                        Console.WriteLine($"Player Two has now {PlayerTwoPoints} points!! ");
+                    }
+                }
+                else 
+                {
+                    if (PlayerOnePoints == maxpoints / 2 || PlayerTwoPoints == maxpoints / 2)
+                    {
+                        Console.WriteLine($"Player One has now {PlayerOnePoints} points!! ");
+                        Console.WriteLine($"Player Two has now {PlayerTwoPoints} points!! ");
+                    }
+                        
+                    
                 }
 
                 if (PlayerOnePoints == maxpoints || PlayerTwoPoints == maxpoints)
@@ -94,6 +111,7 @@ namespace Rockpaperscissors
                     gameloop = false;
                     Console.WriteLine($"Player Two has {PlayerTwoPoints} points - Player One has {PlayerOnePoints} points");
                 }
+
             }              
 
         }
@@ -167,7 +185,8 @@ namespace Rockpaperscissors
         }    
 
         private static string Player_One_Won = "Player One Won!!";
-        private static string Player_Two_Won = "Player Two Won!!";             
+        private static string Player_Two_Won = "Player Two Won!!";                                                             
+        private static string Computer_Won = "Computer Won!!";                                                             
         private static string Tie = "It's a draw.";
 
         public static string CompareTheAnswersBetweenPlayers(int PlayerOne, int PlayerTwo)
@@ -183,12 +202,11 @@ namespace Rockpaperscissors
                             return Tie;
 
                         case 2:
-                            return Player_Two_Won;
+                            return Player_Two_Won;                           
 
                         case 3:
                             return Player_One_Won;
-
-                            break;
+     
                     }
                     break;
 
@@ -202,9 +220,8 @@ namespace Rockpaperscissors
                             return Tie;
 
                         case 3:
-                            return Player_Two_Won;
+                            return Player_Two_Won;                          
 
-                            break;
                     }
 
                     break;
@@ -214,14 +231,14 @@ namespace Rockpaperscissors
                     {
                         case 1:
                             return Player_Two_Won;
+                           
 
                         case 2:
                             return Player_One_Won;
 
                         case 3:
                             return Tie;
-
-                            break;
+ 
                     }
                     break;
             }
