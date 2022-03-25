@@ -8,10 +8,8 @@ namespace Rockpaperscissors
         {
             bool gameloop = true;
             int PlayerOnePoints = 0;
-            int PlayerTwoPoints = 0;
+            int PlayerTwoPoints = 0;           
             
-            
-
             bool MaxPointsIsValid = false;
             int maxpoints = 0;
             while (!MaxPointsIsValid)
@@ -46,20 +44,30 @@ namespace Rockpaperscissors
                     var results = CompareTheAnswersBetweenPlayers(PlayerOne, PlayerTwo);
 
                     Console.WriteLine(results);
-
                     if (results == Player_Two_Won)
                     {
                         PlayerTwoPoints++;
+                        var hasReachedHalfPoints = Program.HasReachedHalfPoints(maxpoints, PlayerTwoPoints);                     
+                        if (hasReachedHalfPoints)
+                        {
+                            Console.WriteLine($"Player Two has now {PlayerTwoPoints} points!! ");
+                            
+                        }
                     }
                     else if (results == Player_One_Won)
                     {
                         PlayerOnePoints++;
+                        var hasReachedHalfPoints = Program.HasReachedHalfPoints(maxpoints, PlayerOnePoints);
+                        if (hasReachedHalfPoints)
+                        {
+                            Console.WriteLine($"Player One has now {PlayerOnePoints} points!! ");
+
+                        }
                     }
                 }
                 else if (UserChoice == "B")
                 {
-                    var PlayerOne = AskForInputAndCheckIt();
-                    
+                    var PlayerOne = AskForInputAndCheckIt();                   
 
                     Random randomChoice = new Random();
                     int Computer = randomChoice.Next(1, 4);
@@ -73,38 +81,31 @@ namespace Rockpaperscissors
                     else
                     {
                         Console.WriteLine(results);
-                    }                   
+                    }                 
                     
-
                     if (results == Player_Two_Won)
                     {                        
                         Console.WriteLine($"Computer Choice: {Computer} \n ");
                         PlayerTwoPoints++;
+                        var hasReachedHalfPoints = Program.HasReachedHalfPoints(maxpoints, PlayerTwoPoints);
+                        if (hasReachedHalfPoints)
+                        {
+                            Console.WriteLine($"Player Two has now {PlayerTwoPoints} points!! ");
+
+                        }
                     }
                     else if (results == Player_One_Won)
                     {                       
                         PlayerOnePoints++;
-                    }
-                }
+                        var hasReachedHalfPoints = Program.HasReachedHalfPoints(maxpoints, PlayerOnePoints);
+                        if (hasReachedHalfPoints)
+                        {
+                            Console.WriteLine($"Player One has now {PlayerOnePoints} points!! ");
 
-                if (maxpoints % 2 != 0)
-                {
-                    if (PlayerOnePoints == maxpoints / 2 + 1 || PlayerTwoPoints == maxpoints / 2 + 1)
-                    {
-                        Console.WriteLine($"Player One has now {PlayerOnePoints} points!! ");
-                        Console.WriteLine($"Player Two has now {PlayerTwoPoints} points!! ");
+                        }
                     }
-                }
-                else 
-                {
-                    if (PlayerOnePoints == maxpoints / 2 || PlayerTwoPoints == maxpoints / 2)
-                    {
-                        Console.WriteLine($"Player One has now {PlayerOnePoints} points!! ");
-                        Console.WriteLine($"Player Two has now {PlayerTwoPoints} points!! ");
-                    }
-                        
-                    
-                }
+                }               
+
 
                 if (PlayerOnePoints == maxpoints || PlayerTwoPoints == maxpoints)
                 {
@@ -112,7 +113,7 @@ namespace Rockpaperscissors
                     Console.WriteLine($"Player Two has {PlayerTwoPoints} points - Player One has {PlayerOnePoints} points");
                 }
 
-            }              
+            }
 
         }
 
@@ -205,8 +206,7 @@ namespace Rockpaperscissors
                             return Player_Two_Won;                           
 
                         case 3:
-                            return Player_One_Won;
-     
+                            return Player_One_Won;    
                     }
                     break;
 
@@ -220,10 +220,8 @@ namespace Rockpaperscissors
                             return Tie;
 
                         case 3:
-                            return Player_Two_Won;                          
-
+                            return Player_Two_Won;                
                     }
-
                     break;
 
                 case 3:
@@ -237,14 +235,34 @@ namespace Rockpaperscissors
                             return Player_One_Won;
 
                         case 3:
-                            return Tie;
- 
+                            return Tie; 
                     }
                     break;
             }
             return Tie;
             
-        }      
+        }   
+
+        public static bool HasReachedHalfPoints(int maxpoints, int PlayerPoints)
+        {     
+            
+            if (maxpoints % 2 != 0)
+            {
+                if (PlayerPoints == maxpoints / 2 + 1)       
+                {
+                    return true;
+                }            
+            }
+            else
+            {
+                if (PlayerPoints == maxpoints / 2)
+                {
+                    return true;
+                }              
+            }
+            return false;
+            
+        }
 
     }
 }   
